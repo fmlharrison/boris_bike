@@ -25,8 +25,8 @@ end
 # end
 
   it "should see that a bike has been docked" do
-    peg = Bike.new
-    @station.dock_bike(peg)
-    expect(@station.peg).to eq peg
+    bike = Bike.new
+    @station.dock_bike(bike)
+    expect(@station.bike).to eq bike
   end
 end
