@@ -10,8 +10,13 @@ describe DockingStation do
     expect(@station).to respond_to(:release_bike)
   end
 
-  it "should not release a bike, if the docking station is empty" do
-    expect { @station.release_bike }.to raise_error
+  it "should not release a bike, if the docking station is empty", focus: true do
+   expect { @station.release_bike }.to raise_error
+  end
+
+  it "should not dock a bike if station is full", focus: true do
+    bike = Bike.new
+    expect { @station.dock_bike }.to raise_error
   end
 
   it "should respond to docking bike" do
@@ -24,13 +29,13 @@ end
   end
 
 #   it "should allow a bike to be docked" do
-#     bike = @station
+#     bike = Bike.new
 #     expect(bike.dock_bike).to eq (true)
 # end
 
   it "should see that a bike has been docked" do
     bike = Bike.new
-    @station.dock_bike(bike)
-    expect(@station.bike).to eq bike
+    @station.dock_bike
+    expect(@station.bike).to eq 1
   end
 end
