@@ -14,14 +14,14 @@ describe DockingStation do
    expect { @station.release_bike }.to raise_error
   end
 
-  it "should not dock a bike if station is full", focus: true do
-    bike = Bike.new
-    expect { @station.dock_bike }.to raise_error
-  end
-
   it "should respond to docking bike" do
     expect(@station).to respond_to(:dock_bike)
 end
+
+  it "should not dock a bike if station is full", focus: true do
+    @station.dock_bike
+    expect { @station.dock_bike }.to raise_error
+  end
 
   it "should return a working bike" do
     bike = Bike.new
