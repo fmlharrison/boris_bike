@@ -19,7 +19,7 @@ describe DockingStation do
 end
 
   it "should not dock a bike if station is full" do
-    @station.dock_bike(Bike.new)
+    20.times { @station.dock_bike(Bike.new) }
     expect { @station.dock_bike(Bike.new) }.to raise_error "There is no room to dock the bike!"
   end
 
@@ -28,14 +28,9 @@ end
     expect(bike.working?).to eq (true)
   end
 
-#   it "should allow a bike to be docked" do
-#     bike = Bike.new
-#     expect(bike.dock_bike).to eq (true)
-# end
-
-  it "should see that a bike has been docked" do
+  it "should allow a bike to be docked" do
     bike = Bike.new
-    @station.dock_bike(bike)
-    expect(@station.bike).to eq bike
+    expect(@station.dock_bike(bike)).to eq [bike]
   end
+
 end
