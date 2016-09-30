@@ -3,30 +3,39 @@ require_relative 'bike.rb'
 class DockingStation
   DEFAULT_CAPCITY = 20
 
-  attr_reader :bikes, :capacity
+  attr_reader :bikes, :capacity, :broken_bikes
 
   def initialize(capacity =20)
     @bikes = []
+    @broken_bikes = []
     @capacity = capacity
   end
 
   def release_bike
     raise "There aren't any bikes!" if empty?
-    @bikes.pop
+    if @bikes.count == 0
+      "No working bike available"
+    else
+      @bikes.pop
+    end
   end
 
   def dock_bike(bike)
     raise "There is no room to dock the bike!" if full?
-    @bikes << bike
+    if bike.broken_bike == true
+      @broken_bikes << bike
+    else
+      @bikes << bike
+    end
   end
 
   private
   def full?
-    @bikes.count >= @capacity
+    @bikes.count + @broken_bikes.count >= @capacity
   end
 
   def empty?
-    @bikes.count == 0
+    @bikes.count + @broken_bikes.count == 0
   end
 end
 
