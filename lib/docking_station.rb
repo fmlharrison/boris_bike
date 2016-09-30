@@ -2,26 +2,16 @@ require_relative 'bike.rb'
 
 class DockingStation
   attr_reader :bike
-  def initialize
-    @bike = 0
-  end
 
   def release_bike
-
-    if @bike > 0
-      Bike.new
-    else
-      raise "There aren't any bikes!"
-    end
+    raise "There aren't any bikes!" unless @bike
+    @bike
   end
 
-  def dock_bike
-    if @bike == 0
-      @bike += 1
-    else
-      raise "There is no room to dock the bike!"
+  def dock_bike(bike)
+    raise "There is no room to dock the bike!" if @bike
+    @bike = bike
   end
-end
 end
 
 # ds = DockingStation.new
