@@ -33,4 +33,17 @@ end
     expect(@station.dock_bike(bike)).to eq [bike]
   end
 
+  describe "#initialize" do
+    context "user sets capacity" do
+      it "should allow user to set a capacity" do
+        @station.instance_variable_get("@capacity")
+      end
+    end
+    context "use defalt capacity" do
+      it "should use default capacity of 20" do
+        expect(@station.capacity).to eq 20
+      end
+    end
+  end
+
 end
